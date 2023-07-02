@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Search</title>
+</head>
+<body>
+    <h1>Book Search</h1>
+    <form method="GET" action="{% url 'book_search' %}">
+        <input type="text" name="query" placeholder="Search By Title">
+        <button type="submit">Search</button>
+    </form>
+    <br>
+    {% if books %}
+    <h2>Search Results : </h2>
+    <ul>
+        {% for book in books %}
+        <li>
+            <strong>{{book.title}}</strong>
+            <a href="{% url 'reserve_book' book_id %}">Reserve</a>
+            <a href="{% url 'reserve_book' book_id %}">Borrow</a>
+            <a href="{% url 'reserve_book' book_id %}">Add To Wishlist</a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No Books Found.</p>
+    {% endif %}
+</body>
+</html>
